@@ -10,6 +10,7 @@ import { PostmanModule } from './modules/postman/postman.module';
 import { ProducerModule } from './modules/producer/producer.module';
 import { CultureModule } from './modules/culture/culture.module';
 import { ProducerCultureModule } from './modules/producer-culture/producer-culture.module';
+import { MetricModule } from './modules/metric/metric.module';
 
 @Module({
   imports: [
@@ -28,7 +29,8 @@ import { ProducerCultureModule } from './modules/producer-culture/producer-cultu
     forwardRef(() => ProducerModule),
     forwardRef(() => LoggerModule),
     CultureModule,
-    ProducerCultureModule, ],
+    ProducerCultureModule,
+    MetricModule, ],
   providers: [
     AppService,
     {
