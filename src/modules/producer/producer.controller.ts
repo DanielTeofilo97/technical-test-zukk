@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseUUIDPipe, Post, Query, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseUUIDPipe, Post, Put, Query, Req, UseGuards } from '@nestjs/common';
 import { LoggerService } from 'src/utils/logger/logger.service';
 import { ProducerService } from './producer.service';
 import { CreateProducerDTO } from './dto/create-producer.dto';
@@ -7,6 +7,7 @@ import { AuthGuard } from 'src/guards/auth.guard';
 import { RoleGuard } from 'src/guards/role.guard';
 import { Roles } from 'src/decorators/role.decorator';
 import { Role } from 'src/enums/role.enum';
+import { UpdateProducerDTO } from './dto/update-producer.dto';
 
 @Controller('producers')
 export class ProducerController {
@@ -92,6 +93,20 @@ export class ProducerController {
           HttpStatus.BAD_REQUEST,
         );
       }
+    }
+
+    @UseGuards(AuthGuard, RoleGuard)
+    @ApiOperation({ summary: 'Atualizar Produtor pelo id' })
+    @ApiResponse({ status: 200, description: 'Produtor atualizado.' })
+    @ApiResponse({ status: 404, description: 'Produtor não encontrado.' })
+    @ApiTags('producers')
+    @Put(':id')
+    async update(
+      @Body() data: UpdateProducerDTO,
+      @Param('id', ParseUUIDPipe) id: string,
+      @Req() req
+    ) {
+      return this.producerService.update(id, data, req.user.id);
     }
 
 
