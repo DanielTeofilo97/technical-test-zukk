@@ -6,7 +6,7 @@ import { RoleGuard } from 'src/guards/role.guard';
 import { ApiBearerAuth, ApiHeader, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateCultureDTO } from './dto/create-culture.dto';
 import { Roles } from 'src/decorators/role.decorator';
-import { Role } from 'src/enums/role.enum';
+import { Role } from '../../enums/role.enum';
 
 @ApiBearerAuth()
 @ApiHeader({

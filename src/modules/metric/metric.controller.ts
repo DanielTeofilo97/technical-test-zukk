@@ -3,7 +3,7 @@ import { MetricService } from './metric.service';
 import { LoggerService } from 'src/utils/logger/logger.service';
 import { ApiBearerAuth, ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/decorators/role.decorator';
-import { Role } from 'src/enums/role.enum';
+import { Role } from '../../enums/role.enum';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { RoleGuard } from 'src/guards/role.guard';
 

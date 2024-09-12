@@ -15,7 +15,7 @@ import { UpdateUserDTO } from './dto/update-user.dto';
 import { PatchUserDTO } from './dto/patch-user.dto';
 import { UserService } from './user.service';
 import { Roles } from 'src/decorators/role.decorator';
-import { Role } from 'src/enums/role.enum';
+import { Role } from '../../enums/role.enum';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { RoleGuard } from 'src/guards/role.guard';
 import {

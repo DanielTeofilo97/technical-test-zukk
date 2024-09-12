@@ -6,7 +6,7 @@ import { ApiBearerAuth, ApiHeader, ApiOperation, ApiQuery, ApiResponse, ApiTags 
 import { AuthGuard } from 'src/guards/auth.guard';
 import { RoleGuard } from 'src/guards/role.guard';
 import { Roles } from 'src/decorators/role.decorator';
-import { Role } from 'src/enums/role.enum';
+import { Role } from '../../enums/role.enum';
 import { UpdateProducerDTO } from './dto/update-producer.dto';
 
 @ApiBearerAuth()
