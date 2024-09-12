@@ -18,9 +18,10 @@ model User {
   createdAt         DateTime  @default(now()) @db.Timestamptz(6)
   updatedAt         DateTime  @updatedAt @default(now()) @db.Timestamptz(6)
 
-  vehiclesCreated  Producer[] @relation("CreatedByUser")
-  vehiclesUpdated  Producer[] @relation("UpdatedByUser")
-  categoriesCreated Category[] @relation("CreatedByUserCategories")
+  producerCreated  Producer[] @relation("CreatedByUser")
+  producersUpdated  Producer[] @relation("UpdatedByUser")
+  producerCultureCreated ProducerCulture[] @relation("CreatedByUserProducerCulture")
+  cultureCreated Culture[] @relation("CreatedByUserCulture")
 
   @@map("user")
 }
@@ -40,7 +41,7 @@ model Producer {
   idUserUpdate          String?  @db.Uuid
   updatedAt             DateTime @updatedAt @default(now()) @db.Timestamptz(6)
 
-  categories           Category[]
+  cultures             ProducerCulture[]
   createdBy            User?     @relation("CreatedByUser", fields: [idUserCreate], references: [id])
   updatedBy            User?     @relation("UpdatedByUser", fields: [idUserUpdate], references: [id])
 
@@ -48,16 +49,31 @@ model Producer {
   @@map("producer")
 }
 
-model Category {
+model ProducerCulture {
   id           String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   idProducer   String   @db.Uuid
-  nome         String
+  idCulture    String   @db.Uuid
   createdAt    DateTime @default(now()) @db.Timestamptz(6)
   idUserCreate String?  @db.Uuid
 
-  producer     Producer @relation(fields: [idProducer], references: [id])
-  createdBy    User?    @relation("CreatedByUserCategories", fields: [idUserCreate], references: [id])
+  producer     Producer @relation(fields: [idProducer], references: [id], onDelete: Cascade )
+  culture      Culture  @relation(fields: [idCulture], references: [id])
+  createdBy    User?    @relation("CreatedByUserProducerCulture", fields: [idUserCreate], references: [id])
 
   @@index([idProducer], name: "idx_id_producer")
-  @@map("category")
+  @@map("producer_culture")
+}
+
+
+model Culture {
+  id           String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  nome         String
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now()) @db.Timestamptz(6)
+  idUserCreate String?  @db.Uuid
+
+  producerCulture           ProducerCulture[]
+  createdBy    User?    @relation("CreatedByUserCulture", fields: [idUserCreate], references: [id])
+
+  @@map("culture")
 }

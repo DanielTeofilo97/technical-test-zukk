@@ -8,13 +8,43 @@ async function main() {
 
     // Create adm
     const password = await bcrypt.hash('12345678', await bcrypt.genSalt());
-    await prisma.user.create({
+    const user = await prisma.user.create({
       data: {
         name: 'Galvão Alves',
         cpf: '51103282000',
         password: password,
         role: 0,
       },
+    });
+
+    //Crete Cultures
+
+    const cultures = [
+      {
+        nome:'Soja',
+        idUserCreate: user.id,
+      },
+      {
+        nome:'Milho',
+        idUserCreate: user.id,
+      },
+      {
+        nome:'Algodão',
+        idUserCreate: user.id,
+      },
+      {
+        nome:'Café',
+        idUserCreate: user.id,
+      },
+      {
+        nome:'Cana de Açucar',
+        idUserCreate: user.id,
+      },
+
+    ]
+
+    await prisma.culture.createMany({
+      data: cultures,
     });
 
 
