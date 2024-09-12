@@ -15,10 +15,12 @@ async function bootstrap() {
     .setTitle('API Producers')
     .setDescription('API REST desenvolvido com NestJs e PostgreSQL')
     .setVersion('1.0')
+    .addServer('http://localhost:3049', 'Local Development')
     .addTag('auth')
     .addTag('users')
     .addTag('producers')
     .addTag('cultures')
+    .addTag('metrics')
     .addTag('postman')
     .setContact(
       'Daniel Teófilo da Silva',

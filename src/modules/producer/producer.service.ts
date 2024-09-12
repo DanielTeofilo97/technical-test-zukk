@@ -217,7 +217,7 @@ export class ProducerService {
             where: dynamicFilter,
         });
 
-        const vehicles = await this.prisma.producer.findMany({
+        const producers = await this.prisma.producer.findMany({
             skip,
             take,
             where: dynamicFilter,
@@ -263,7 +263,7 @@ export class ProducerService {
         return {
             totalCount,
             hasNextPage,
-            vehicles,
+            producers,
         };
     }
 
