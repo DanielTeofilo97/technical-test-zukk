@@ -2,13 +2,20 @@ import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, ParseU
 import { LoggerService } from 'src/utils/logger/logger.service';
 import { ProducerService } from './producer.service';
 import { CreateProducerDTO } from './dto/create-producer.dto';
-import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiHeader, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { RoleGuard } from 'src/guards/role.guard';
 import { Roles } from 'src/decorators/role.decorator';
 import { Role } from 'src/enums/role.enum';
 import { UpdateProducerDTO } from './dto/update-producer.dto';
 
+@ApiBearerAuth()
+@ApiHeader({
+  name: 'Authorization',
+  description: 'Bearer token',
+})
+@Roles(Role.Admin)
+@UseGuards(AuthGuard, RoleGuard)
 @Controller('producers')
 export class ProducerController {
     private readonly logger: LoggerService

@@ -3,11 +3,18 @@ import { CultureService } from './culture.service';
 import { LoggerService } from 'src/utils/logger/logger.service';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { RoleGuard } from 'src/guards/role.guard';
-import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiHeader, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateCultureDTO } from './dto/create-culture.dto';
 import { Roles } from 'src/decorators/role.decorator';
 import { Role } from 'src/enums/role.enum';
 
+@ApiBearerAuth()
+@ApiHeader({
+  name: 'Authorization',
+  description: 'Bearer token',
+})
+@Roles(Role.Admin)
+@UseGuards(AuthGuard, RoleGuard)
 @Controller('cultures')
 export class CultureController {
 
