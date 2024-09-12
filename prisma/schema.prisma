@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  extensions = [uuidOssp(map: "uuid-ossp")]
+}
+
+model User {
+  id                String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  name              String    @db.VarChar(127)
+  cpf               String    @db.VarChar(11)
+  role              Int?      @default(1) @db.Integer
+  password          String    @db.VarChar(127)
+  createdAt         DateTime  @default(now()) @db.Timestamptz(6)
+  updatedAt         DateTime  @updatedAt @default(now()) @db.Timestamptz(6)
+
+  vehiclesCreated  Producer[] @relation("CreatedByUser")
+  vehiclesUpdated  Producer[] @relation("UpdatedByUser")
+  categoriesCreated Category[] @relation("CreatedByUserCategories")
+
+  @@map("user")
+}
+
+model Producer {
+  id                    String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  cpfCnpj               String   @unique
+  nomeProdutor          String   @db.VarChar(255)
+  nomeFazenda           String   @db.VarChar(255)
+  cidade                String
+  estado                String
+  areaTotalHectares     Float
+  areaAgricultavelHectares Float
+  areaVegetacaoHectares Float
+  idUserCreate          String?  @db.Uuid
+  createdAt             DateTime @default(now()) @db.Timestamptz(6)
+  idUserUpdate          String?  @db.Uuid
+  updatedAt             DateTime @updatedAt @default(now()) @db.Timestamptz(6)
+
+  categories           Category[]
+  createdBy            User?     @relation("CreatedByUser", fields: [idUserCreate], references: [id])
+  updatedBy            User?     @relation("UpdatedByUser", fields: [idUserUpdate], references: [id])
+
+  @@index([cpfCnpj], name: "idx_cpf_cnpj")
+  @@map("producer")
+}
+
+model Category {
+  id           String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  idProducer   String   @db.Uuid
+  nome         String
+  createdAt    DateTime @default(now()) @db.Timestamptz(6)
+  idUserCreate String?  @db.Uuid
+
+  producer     Producer @relation(fields: [idProducer], references: [id])
+  createdBy    User?    @relation("CreatedByUserCategories", fields: [idUserCreate], references: [id])
+
+  @@index([idProducer], name: "idx_id_producer")
+  @@map("category")
+}

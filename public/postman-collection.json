@@ -1,0 +1,410 @@
+{
+	"info": {
+		"_postman_id": "1e528d9d-ee68-4802-bc9a-a4ef8c82c5fe",
+		"name": "Teste Técnico InfoSistemas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11918828",
+		"_collection_link": "https://restless-trinity-627591.postman.co/workspace/Tora-PPO~251bc5ff-6772-4176-ba9a-fdf5fbd0bfd9/collection/11918828-1e528d9d-ee68-4802-bc9a-a4ef8c82c5fe?action=share&source=collection_link&creator=11918828"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"\r",
+									"  const responseJson = pm.response.json();\r",
+									"  const token = responseJson.user.token; \r",
+									"\r",
+									"  pm.environment.set(\"TOKEN\", token);\r",
+									"\r",
+									"  console.log(\"Token salvo na variável de ambiente 'authToken'\");\r",
+									"} else {\r",
+									"  console.log(\"Falha ao obter token. Status:\", pm.response.code);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\":\"49745742058\",\r\n    \"password\":\"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/auth/login",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "registrar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"\r",
+									"  const responseJson = pm.response.json();\r",
+									"  const token = responseJson.user.token; \r",
+									"\r",
+									"  pm.environment.set(\"TOKEN\", token);\r",
+									"\r",
+									"  console.log(\"Token salvo na variável de ambiente 'authToken'\");\r",
+									"} else {\r",
+									"  console.log(\"Falha ao obter token. Status:\", pm.response.code);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cpf\":\"49745742058\",\r\n    \"password\":\"12345678\",\r\n    \"name\":\"Daniel Teófilo\",\r\n    \"role\":0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/auth/register",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": []
+		},
+		{
+			"name": "vehicle",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"\r",
+									"  const responseJson = pm.response.json();\r",
+									"  const token = responseJson.user.token; \r",
+									"\r",
+									"  pm.environment.set(\"TOKEN\", token);\r",
+									"\r",
+									"  console.log(\"Token salvo na variável de ambiente 'authToken'\");\r",
+									"} else {\r",
+									"  console.log(\"Falha ao obter token. Status:\", pm.response.code);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plate\":\"HRO3E29\",\r\n    \"chassis\":\"8AD3CN6BTBG035202\",\r\n    \"renavam\":\"52036153225\",\r\n    \"model\":\"607 Sedan 3.0 V6\",\r\n    \"brand\":\"Peugeot\",\r\n    \"year\": 2024\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/vehicles",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"vehicles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"\r",
+									"  const responseJson = pm.response.json();\r",
+									"  const token = responseJson.user.token; \r",
+									"\r",
+									"  pm.environment.set(\"TOKEN\", token);\r",
+									"\r",
+									"  console.log(\"Token salvo na variável de ambiente 'authToken'\");\r",
+									"} else {\r",
+									"  console.log(\"Falha ao obter token. Status:\", pm.response.code);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"model\": \"307 PK 1.6\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/vehicles/5bf63f82-426c-4d88-ad27-65cd90fc3d7f",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"vehicles",
+								"5bf63f82-426c-4d88-ad27-65cd90fc3d7f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/vehicles?skip=0&take=3&plate=HRO3E24",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"vehicles"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "3"
+								},
+								{
+									"key": "plate",
+									"value": "HRO3E24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find one",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/vehicles/6faba3f4-0a98-4b51-85da-4017e7118bdd",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"vehicles",
+								"6faba3f4-0a98-4b51-85da-4017e7118bdd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/vehicles/82698c5e-df50-4c32-8538-732be0e516d7",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"vehicles",
+								"82698c5e-df50-4c32-8538-732be0e516d7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
