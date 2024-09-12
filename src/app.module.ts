@@ -8,7 +8,8 @@ import { AppService } from './app.service';
 import { LoggerModule } from './utils/logger/logger.module';
 import { PostmanModule } from './modules/postman/postman.module';
 import { ProducerModule } from './modules/producer/producer.module';
-import { CategoryModule } from './modules/category/category.module';
+import { CultureModule } from './modules/culture/culture.module';
+import { ProducerCultureModule } from './modules/producer-culture/producer-culture.module';
 
 @Module({
   imports: [
@@ -25,8 +26,9 @@ import { CategoryModule } from './modules/category/category.module';
     forwardRef(() => AuthModule),
     forwardRef(() => PostmanModule),
     forwardRef(() => ProducerModule),
-    forwardRef(() => CategoryModule),
-    forwardRef(() => LoggerModule), ],
+    forwardRef(() => LoggerModule),
+    CultureModule,
+    ProducerCultureModule, ],
   providers: [
     AppService,
     {
