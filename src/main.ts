@@ -18,7 +18,7 @@ async function bootstrap() {
     .addTag('auth')
     .addTag('users')
     .addTag('producers')
-    .addTag('categories')
+    .addTag('cultures')
     .addTag('postman')
     .setContact(
       'Daniel Teófilo da Silva',
