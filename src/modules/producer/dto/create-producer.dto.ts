@@ -1,6 +1,8 @@
 import { IsString, IsNotEmpty, Matches, Validate, IsOptional, IsNumber } from 'class-validator';
 import { IsValidCpfCnpj } from '../validator/cpf-cnpj.validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { CreateProducerCultureDTO } from 'src/modules/producer-culture/dto/create-producer-culture.dto';
+import { IsValidAreaTotal } from '../validator/area-total.validator'; // Importa o validador personalizado
 
 export class CreateProducerDTO {
   @ApiProperty({
@@ -11,7 +13,7 @@ export class CreateProducerDTO {
   @IsString()
   @IsNotEmpty({ message: 'CPF ou CNPJ é obrigatório' })
   @Matches(/^\d+$/, { message: 'CPF ou CNPJ deve conter apenas dígitos' })
-  @Validate(IsValidCpfCnpj, { message: 'CPF ou CNPJ inválido' })  
+  @Validate(IsValidCpfCnpj, { message: 'CPF ou CNPJ inválido' })
   cpfCnpj: string;
 
   @ApiProperty({
@@ -57,6 +59,7 @@ export class CreateProducerDTO {
   })
   @IsNumber({}, { message: 'Área total deve ser um número' })
   @IsNotEmpty({ message: 'Área total em hectares é obrigatória' })
+  @Validate(IsValidAreaTotal, { message: 'A soma da área agricultável e vegetação não pode ser maior que a área total' })
   areaTotalHectares: number;
 
   @ApiProperty({
@@ -94,4 +97,18 @@ export class CreateProducerDTO {
   @IsString({ message: 'O ID do usuário atualizador deve ser uma cadeia de caracteres' })
   @IsOptional()
   idUserUpdate?: string;
+
+  @ApiProperty({
+    description: 'Lista de Culturas',
+    example: [
+      {
+        idCulture: 'd60e77ab-4a6d-4e7c-b1e1-9f2d907d2f8d'
+      }, 
+      {
+        idCulture: 'a5e5c70e-9e56-4a4e-b418-6d6f663a4589'
+      }
+    ],
+    required: false,
+  })
+  cultures: CreateProducerCultureDTO[]
 }

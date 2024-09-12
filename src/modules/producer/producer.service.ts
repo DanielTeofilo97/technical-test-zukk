@@ -14,25 +14,61 @@ export class ProducerService {
     async create(producer: CreateProducerDTO, user_id: string) {
         producer.idUserCreate = user_id;
         producer.idUserUpdate = user_id;
-
+    
         try {
             const producerExists = await this.prisma.producer.findFirst({
                 where: {
-                    cpfCnpj: producer.cpfCnpj
-                }
-            })
-            if (!producerExists) {
-                return this.prisma.producer.create({
-                    data: producer
-                });
-            } else {
+                    cpfCnpj: producer.cpfCnpj,
+                },
+            });
+    
+            if (producerExists) {
                 throw new ConflictException('Producer with CPF/CNPJ already exists');
             }
-        } catch (error) {
-            throw new BadRequestException(error);
-        }
 
+            if (producer.cultures && producer.cultures.length > 0) {
+                const cultureIds = producer.cultures.map(culture => culture.idCulture);
+
+                const existingCultures = await this.prisma.culture.findMany({
+                    where: {
+                        id: { in: cultureIds },
+                    },
+                    select: { id: true },
+                });
+    
+                if (existingCultures.length !== cultureIds.length) {
+                    const invalidIds = cultureIds.filter(
+                        id => !existingCultures.some(culture => culture.id === id)
+                    );
+                    throw new NotFoundException(`Cultures not found with IDs: ${invalidIds.join(', ')}`);
+                }
+            }
+    
+            const { cultures, ...producerData } = producer;
+            
+            const newProducer = await this.prisma.producer.create({
+                data: producerData,
+            });
+    
+            if (cultures && cultures.length > 0) {
+                const producerCulturesData = cultures.map(culture => ({
+                    idProducer: newProducer.id,
+                    idCulture: culture.idCulture,
+                    idUserCreate: user_id,
+                }));
+    
+                await this.prisma.producerCulture.createMany({
+                    data: producerCulturesData,
+                });
+            }
+    
+            return newProducer;
+    
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
     }
+    
     async list({
         skip = 0,
         take = 10,
@@ -65,7 +101,7 @@ export class ProducerService {
         if (filter.cidade) {
             dynamicFilter.cidade = { contains: filter.cidade, mode: 'insensitive' };
         }
-        if (filter.nomeFazenda) {
+        if (filter.estado) {
             dynamicFilter.estado = { contains: filter.estado, mode: 'insensitive' };
         }
 
@@ -90,6 +126,16 @@ export class ProducerService {
                 areaAgricultavelHectares:true,
                 createdAt: true,
                 updatedAt: true,
+                cultures: {
+                    select: {
+                        culture: {
+                            select: {
+                                id: true,
+                                nome: true, 
+                            },
+                        },
+                    },
+                },
                 createdBy: {
                     select: {
                         name: true,

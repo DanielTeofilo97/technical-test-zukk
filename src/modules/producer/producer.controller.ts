@@ -8,7 +8,7 @@ import { RoleGuard } from 'src/guards/role.guard';
 import { Roles } from 'src/decorators/role.decorator';
 import { Role } from 'src/enums/role.enum';
 
-@Controller('producer')
+@Controller('producers')
 export class ProducerController {
     private readonly logger: LoggerService
     constructor(
@@ -39,15 +39,15 @@ export class ProducerController {
       return this.producerService.create(data, req.user.id);
     }
 
-    @ApiOperation({ summary: 'Listagem Veículos' })
-    @ApiResponse({ status: 200, description: 'Listagem Veículos' })
+    @ApiOperation({ summary: 'Listagem Producers' })
+    @ApiResponse({ status: 200, description: 'Listagem Producers' })
     @ApiResponse({
       status: 404,
-      description: 'Nenhum veículo encontrado',
+      description: 'Nenhum producer encontrado',
     })
     @ApiResponse({
       status: 400,
-      description: 'Erro ao buscar veículos',
+      description: 'Erro ao buscar producers',
     })
     @ApiQuery({ name: 'skip', required: false, description: 'Quantidade de registros para pular', example: 0 })
     @ApiQuery({ name: 'take', required: false, description: 'Quantidade de registros para pegar', example: 20 })
@@ -88,7 +88,7 @@ export class ProducerController {
       } catch (error) {
         this.logger.error(error);
         throw new HttpException(
-          'Erro ao buscar veículos',
+          'Erro ao buscar producers',
           HttpStatus.BAD_REQUEST,
         );
       }
