@@ -16,9 +16,9 @@ const fakeProducers = [
     areaAgricultavelHectares: 803,
     areaVegetacaoHectares: 200,
     idUserCreate: '4df4d18e-89f8-4920-91ed-de84753029aa',
-    createdAt: new Date(), // Ajuste conforme necessário
+    createdAt: new Date(),
     idUserUpdate: '4df4d18e-89f8-4920-91ed-de84753029aa',
-    updatedAt: new Date(), // Ajuste conforme necessário
+    updatedAt: new Date(), 
     cultures: [
       {
         idCulture: "2ff544ab-b572-4f58-9f33-6192b8c25eaf",
@@ -240,8 +240,8 @@ describe('ProducerService', () => {
       expect(response).toEqual(updatedProducer);
       expect(prisma.producer.update).toHaveBeenCalledTimes(1);
 
-      const [received] = (prisma.producer.update as jest.Mock).mock.calls[0];
-      console.log('Received:', received);
+      //const [received] = (prisma.producer.update as jest.Mock).mock.calls[0];
+      //console.log('Received:', received);
 
     });
 
@@ -279,7 +279,6 @@ describe('ProducerService', () => {
         },
         select: {
           id: true,
-          // Adicione outros campos se forem selecionados
         },
       });
     });
