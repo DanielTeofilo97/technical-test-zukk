@@ -1,6 +1,6 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { LoggerService } from 'src/utils/logger/logger.service';
+import { PrismaService } from '../../prisma/prisma.service';
+import { LoggerService } from '../../utils/logger/logger.service';
 import { CreateCultureDTO } from './dto/create-culture.dto';
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 import {
   BadRequestException,
   UnauthorizedException,
@@ -55,7 +55,7 @@ export class AuthService {
     try {
       this.checkToken(token);
       return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   }
@@ -99,7 +99,7 @@ export class AuthService {
 
     const user = await this.userService.create(data);
 
-    const userCreated = await this.prisma.user.findFirst({
+    const userCreated = await this.prisma.user.findUnique({
       where: {
         id: user.id,
       },

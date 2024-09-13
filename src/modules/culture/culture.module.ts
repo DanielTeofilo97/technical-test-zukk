@@ -1,8 +1,8 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { CultureService } from './culture.service';
 import { CultureController } from './culture.controller';
-import { PrismaModule } from 'src/prisma/prisma.module';
-import { LoggerModule } from 'src/utils/logger/logger.module';
+import { PrismaModule } from '../../prisma/prisma.module';
+import { LoggerModule } from '../../utils/logger/logger.module';
 import { UserModule } from '../user/user.module';
 import { AuthModule } from '../auth/auth.module';
 
