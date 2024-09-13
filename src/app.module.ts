@@ -9,7 +9,6 @@ import { LoggerModule } from './utils/logger/logger.module';
 import { PostmanModule } from './modules/postman/postman.module';
 import { ProducerModule } from './modules/producer/producer.module';
 import { CultureModule } from './modules/culture/culture.module';
-import { ProducerCultureModule } from './modules/producer-culture/producer-culture.module';
 import { MetricModule } from './modules/metric/metric.module';
 
 @Module({
@@ -19,7 +18,7 @@ import { MetricModule } from './modules/metric/metric.module';
     }),
     ThrottlerModule.forRoot([
       {
-        ttl: Number(process.env.THROTTLE_TTL)*1000, 
+        ttl: Number(process.env.THROTTLE_TTL) * 1000,
         limit: Number(process.env.THROTTLE_LIMIT),
       },
     ]),
@@ -28,9 +27,9 @@ import { MetricModule } from './modules/metric/metric.module';
     forwardRef(() => PostmanModule),
     forwardRef(() => ProducerModule),
     forwardRef(() => LoggerModule),
-    CultureModule,
-    ProducerCultureModule,
-    MetricModule, ],
+    forwardRef(() => CultureModule),
+    forwardRef(() => MetricModule)
+  ],
   providers: [
     AppService,
     {
@@ -39,5 +38,5 @@ import { MetricModule } from './modules/metric/metric.module';
     },
   ],
 })
-export class AppModule {}
+export class AppModule { }
 

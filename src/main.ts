@@ -16,6 +16,7 @@ async function bootstrap() {
     .setDescription('API REST desenvolvido com NestJs e PostgreSQL')
     .setVersion('1.0')
     .addServer('http://localhost:3049', 'Local Development')
+    .addServer('https://technical-test-zukk-production.up.railway.app','Prod')
     .addTag('auth')
     .addTag('users')
     .addTag('producers')
