@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, ConflictException, BadRequestException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { LoggerService } from 'src/utils/logger/logger.service';
+import { PrismaService } from '../../prisma/prisma.service';
+import { LoggerService } from '../../utils/logger/logger.service';
 import { CreateProducerDTO } from './dto/create-producer.dto';
 import { UpdateProducerDTO } from './dto/update-producer.dto';
 
@@ -74,10 +74,7 @@ export class ProducerService {
         producer.idUserUpdate = user_id;
 
         try {
-  
-            /**
-              * Verificar se o produtor existe
-             */
+            // Verificar se o produtor existe
             const existingProducer = await this.prisma.producer.findUnique({
                 where: { id },
             });
@@ -86,17 +83,12 @@ export class ProducerService {
                 throw new NotFoundException(`Producer not found with ID: ${id}`);
             }
 
-
-            /**
-              * Verificar se as culturas associadas existem
-             */
+            // Verificar se as culturas associadas existem
             if (producer.cultures && producer.cultures.length > 0) {
                 const cultureIds = producer.cultures.map(culture => culture.idCulture);
 
                 const existingCultures = await this.prisma.culture.findMany({
-                    where: {
-                        id: { in: cultureIds },
-                    },
+                    where: { id: { in: cultureIds } },
                     select: { id: true },
                 });
 
@@ -110,18 +102,16 @@ export class ProducerService {
 
             const { cultures, ...producerData } = producer;
 
-            /**
-              *  Atualizar dados do produtor
-             */
+            // Atualizar dados do produtor
             const updatedProducer = await this.prisma.producer.update({
                 where: { id },
                 data: producerData,
+                select: {
+                    id: true,
+                },
             });
 
-            
-            /**
-              *   Recuperar culturas atuais associadas ao produtor
-            */
+            // Recuperar culturas atuais associadas ao produtor
             const currentCultures = await this.prisma.producerCulture.findMany({
                 where: { idProducer: id },
                 select: { idCulture: true },
@@ -129,22 +119,15 @@ export class ProducerService {
 
             const currentCultureIds = currentCultures.map(c => c.idCulture);
 
-            
-            /**
-              *   Culturas a serem adicionadas (presentes na lista nova, mas não nas culturas atuais)
-            */
+            // Culturas a serem adicionadas
             const culturesToAdd = cultures.filter(culture => !currentCultureIds.includes(culture.idCulture));
- 
-            /**
-              *   Culturas a serem removidas (presentes nas culturas atuais, mas não na lista nova)
-            */
+
+            // Culturas a serem removidas
             const culturesToRemove = currentCultureIds.filter(idCulture =>
                 !cultures.some(culture => culture.idCulture === idCulture)
             );
 
-            /**
-              *   Adicionar novas culturas
-            */
+            // Adicionar novas culturas
             if (culturesToAdd.length > 0) {
                 const producerCulturesData = culturesToAdd.map(culture => ({
                     idProducer: id,
@@ -156,10 +139,8 @@ export class ProducerService {
                     data: producerCulturesData,
                 });
             }
- 
-            /**
-              *   Remover culturas antigas
-            */
+
+            // Remover culturas antigas
             if (culturesToRemove.length > 0) {
                 await this.prisma.producerCulture.deleteMany({
                     where: {
@@ -172,9 +153,13 @@ export class ProducerService {
             return updatedProducer;
 
         } catch (error) {
+            if (error instanceof NotFoundException) {
+                throw error; // Re-throw NotFoundException as is
+            }
             throw new BadRequestException(error.message);
         }
     }
+
 
 
     async list({

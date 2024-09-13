@@ -1,8 +1,8 @@
 import { IsString, IsNotEmpty, Matches, Validate, IsOptional, IsNumber } from 'class-validator';
 import { IsValidCpfCnpj } from '../validator/cpf-cnpj.validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { CreateProducerCultureDTO } from 'src/modules/producer-culture/dto/create-producer-culture.dto';
-import { IsValidAreaTotal } from '../validator/area-total.validator'; // Importa o validador personalizado
+import { CreateProducerCultureDTO } from './create-producer-culture.dto';
+import { IsValidAreaTotal } from '../validator/area-total.validator'; 
 
 export class CreateProducerDTO {
   @ApiProperty({
@@ -59,7 +59,7 @@ export class CreateProducerDTO {
   })
   @IsNumber({}, { message: 'Área total deve ser um número' })
   @IsNotEmpty({ message: 'Área total em hectares é obrigatória' })
-  @Validate(IsValidAreaTotal, { message: 'A soma da área agricultável e vegetação não pode ser maior que a área total' })
+  @Validate(IsValidAreaTotal)
   areaTotalHectares: number;
 
   @ApiProperty({
