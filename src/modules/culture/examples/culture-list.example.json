@@ -1,0 +1,40 @@
+{
+    "200":{
+        "totalCount": 3,
+        "hasNextPage": true,
+        "vehicles": [
+            {
+                "id": "2bbffea0-99ac-4dac-928d-1d739ebb1d4f",
+                "nome": "Soja",
+                "active": true,
+                "createdBy": {
+                    "name": "Galvão Alves"
+                }
+            },
+            {
+                "id": "8ca4445c-9459-47a5-b533-f15b7408935f",
+                "nome": "Cana de Açucar",
+                "active": true,
+                "createdBy": {
+                    "name": "Galvão Alves"
+                }
+            },
+            {
+                "id": "3a4b1978-73f4-457d-8557-dec855061cd5",
+                "nome": "Café",
+                "active": true,
+                "createdBy": {
+                    "name": "Galvão Alves"
+                }
+            }
+        ]
+    },
+    "400":{
+        "statusCode": 400,
+        "message": "Erro ao buscar culturas"
+    },
+    "404":{
+        "message": "Nenhuma cultura encontrado",
+        "statusCode": 404
+    }
+}

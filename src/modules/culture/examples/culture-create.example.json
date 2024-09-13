@@ -1,0 +1,29 @@
+{
+    "201":{
+        "id": "d58c1f01-1e15-4681-ab6c-6d7dbc556cf7",
+        "nome": "Banana Teste",
+        "active": true,
+        "createdAt": "2024-09-13T21:31:04.076Z",
+        "idUserCreate": "52c31fd3-9178-4d6f-a2d6-fb3e6a627dff"
+    },
+    "400":{
+        "statusCode": 400,
+        "message": "Erro durante a criação da cultura"
+    },
+    "403":{
+        "message": "Forbidden resource",
+        "error": "Forbidden",
+        "statusCode": 403
+     },
+    "409":{
+        "response": {
+            "message": "Culture with nome already exists",
+            "error": "Conflict",
+            "statusCode": 409
+        },
+        "status": 409,
+        "options": {},
+        "message": "Culture with nome already exists",
+        "name": "ConflictException"
+    }
+}
