@@ -10,7 +10,7 @@
  <a href="#-script">Scripts</a> •
  <a href="#-db">Banco de Dados</a> •
  <a href="#-v-ambiente">Variáveis de Ambiente</a> •
- <a href="#-tests">Testes</a> • •
+ <a href="#-tests">Testes</a> • 
  <a href="#-solid">Princípios SOLID</a> •
  <a href="#-contribuir">Contribuições</a> •
  <a href="#-autor">Autor</a> •
@@ -340,6 +340,47 @@ No ambiente de desenvolvimento, utilizamos o arquivo `.env`, que contém variáv
 ### Arquivo `.env.example`
 
 O arquivo `.env.example` serve como um guia para os desenvolvedores que precisam configurar suas próprias variáveis de ambiente locais. Ele lista todas as variáveis necessárias, mas sem os valores sensíveis, que devem ser preenchidos por cada desenvolvedor. 
+
+&nbsp;
+<a id="-script"></a>
+
+## 📜 Scripts
+
+Este projeto inclui uma série de scripts úteis para simplificar o desenvolvimento, teste e manutenção da aplicação. Abaixo estão descritos os principais scripts disponíveis no `package.json`:
+
+- **`build`**: Compila o projeto usando o NestJS, gerando os arquivos otimizados para produção.
+
+- **`format`**: Aplica a formatação do código-fonte utilizando Prettier. Este comando formata todos os arquivos TypeScript nas pastas `src` e `test`.
+
+- **`start`**: Inicia a aplicação utilizando o NestJS. Este comando é ideal para execução em ambiente de desenvolvimento.
+
+- **`start:dev`**: Inicia a aplicação em modo de desenvolvimento com recarregamento automático ao detectar alterações nos arquivos.
+
+- **`start:debug`**: Inicia a aplicação em modo de desenvolvimento com suporte para depuração e recarregamento automático.
+
+- **`start:prod`**: Inicia a aplicação em modo de produção diretamente dos arquivos compilados no diretório `dist`.
+
+- **`lint`**: Executa o ESLint para verificar a conformidade do código com as regras definidas e corrige automaticamente os problemas encontrados.
+
+- **`services:up`**: Inicia os serviços definidos no `docker-compose.yaml` localizado na raiz do projeto`, incluindo o banco de dados PostgreSQL. Este script é essencial para configurar rapidamente o ambiente de desenvolvimento e garantir que todos os serviços necessários estejam em execução antes de iniciar a aplicação.
+
+- **`test`**: Executa os testes unitários utilizando Jest. Este comando roda todos os testes definidos na aplicação.
+
+- **`test:watch`**: Executa os testes em modo de observação, reexecutando-os sempre que há mudanças no código.
+
+- **`test:cov`**: Executa os testes e gera um relatório de cobertura de código com Jest.
+
+- **`test:debug`**: Executa os testes em modo de depuração, permitindo a análise mais detalhada dos testes com a ajuda do `--inspect-brk`.
+
+- **`test:e2e`**: Executa os testes de integração (end-to-end) utilizando Jest com uma configuração específica localizada em `test/jest-e2e.json`.
+
+- **`prisma:seed`**: Executa o script de seed do Prisma para popular o banco de dados com dados iniciais.
+
+### Diferencial
+
+Um dos grandes diferenciais deste projeto é a automação do ambiente de desenvolvimento. Com o script **`npm run services:up`**, você pode iniciar rapidamente todos os serviços necessários, como o banco de dados PostgreSQL, com apenas um comando. Esse script configura e inicia todos os serviços definidos no Docker Compose, garantindo que o ambiente de desenvolvimento esteja pronto para uso sem a necessidade de configuração manual adicional.
+
+Além disso, o script **`npm run start:dev`** permite que você inicie o servidor de desenvolvimento com recarregamento automático, facilitando o fluxo de trabalho durante o desenvolvimento. Juntos, esses scripts simplificam a configuração do ambiente e a execução de tarefas, permitindo que você se concentre no desenvolvimento e na qualidade do código com eficiência.
 
 &nbsp;
 <a id="-tests"></a>
