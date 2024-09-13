@@ -28,7 +28,7 @@ async function bootstrap() {
       'https://br.linkedin.com/in/daniel-te%C3%B3filo-108a0222b',
       'feitordaniel@live.com'
     )
-    .setExternalDoc('Baixar Collection Postman 📁', `http://localhost:${process.env.PORT}/postman/collection`)
+    .setExternalDoc('Baixar Collection Postman 📁', `${process.env.BASE_URL}/postman/collection`)
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
