@@ -1,0 +1,15 @@
+{
+    "200":{
+        "user": {
+            "id": "1afac3ca-a229-4bd4-b15f-daf19286a658",
+            "name": "Daniel Teófilo",
+            "role": 0,
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFhZmFjM2NhLWEyMjktNGJkNC1iMTVmLWRhZjE5Mjg2YTY1OCIsIm5hbWUiOiJEYW5pZWwgVGXDs2ZpbG8iLCJpYXQiOjE3MjYyNjYxNzIsImV4cCI6MTcyNjg3MDk3MiwiYXVkIjoidXNlcnMiLCJpc3MiOiJsb2dpbiIsInN1YiI6IjFhZmFjM2NhLWEyMjktNGJkNC1iMTVmLWRhZjE5Mjg2YTY1OCJ9.Zb6GkeRBREQGmE1EmZEphaXgsyhhOsgM-QhhH_M12uo"
+        }
+    },
+    "400":{
+        "message": "CPF já cadastrado.",
+        "error": "Bad Request",
+        "statusCode": 400
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "200":{
+        "user": {
+            "id": "52c31fd3-9178-4d6f-a2d6-fb3e6a627dff",
+            "name": "Galvão Alves",
+            "role": 0,
+            "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUyYzMxZmQzLTkxNzgtNGQ2Zi1hMmQ2LWZiM2U2YTYyN2RmZiIsIm5hbWUiOiJHYWx2w6NvIEFsdmVzIiwiaWF0IjoxNzI2MjY2MDI2LCJleHAiOjE3MjY4NzA4MjYsImF1ZCI6InVzZXJzIiwiaXNzIjoibG9naW4iLCJzdWIiOiI1MmMzMWZkMy05MTc4LTRkNmYtYTJkNi1mYjNlNmE2MjdkZmYifQ.Yk9X98ObLzZjGzTYwMdJktVvOZZQStJQ3XeRV5HCBHM"
+        }
+    },
+    "400":{
+        "message": [
+            "CPF inválido!"
+        ],
+        "error": "Bad Request",
+        "statusCode": 400
+    }
+}
