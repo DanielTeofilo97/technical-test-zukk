@@ -432,12 +432,6 @@ Exemplos de tipos de commits que utilizamos:
 - **perf**: Alterações no código que melhoram o desempenho
 - **test**: Adição ou correção de testes
   
-### Estratégia de Branching
-
-Optamos por uma estratégia de branching simples, onde cada nova funcionalidade é desenvolvida em uma branch específica para aquela feature. Essa estratégia é conhecida como **Feature Branching**, que não deve ser confundida com o Git Flow. Embora o Git Flow seja uma excelente estratégia, optamos pela simplicidade do Feature Branching.
-
-Além das feature branches, mantemos uma branch fixa para ajustes rápidos, garantindo que correções urgentes possam ser aplicadas rapidamente.
-
 ### Deploy com Railway
 
 O deploy do projeto é realizado automaticamente na **Railway**, uma plataforma que facilita o processo de entrega contínua. A Railway é otimizada para gerenciamento de infraestrutura e implantação, garantindo que as mudanças aprovadas na branch principal sejam implantadas rapidamente e de forma eficiente.
