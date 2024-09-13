@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1e528d9d-ee68-4802-bc9a-a4ef8c82c5fe",
-		"name": "Teste Técnico InfoSistemas",
+		"_postman_id": "4c44ac2b-899a-4ed7-a19d-7e5fe702ff02",
+		"name": "Teste Técnico Zukk",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11918828",
-		"_collection_link": "https://restless-trinity-627591.postman.co/workspace/Tora-PPO~251bc5ff-6772-4176-ba9a-fdf5fbd0bfd9/collection/11918828-1e528d9d-ee68-4802-bc9a-a4ef8c82c5fe?action=share&source=collection_link&creator=11918828"
+		"_collection_link": "https://restless-trinity-627591.postman.co/workspace/Tora-PPO~251bc5ff-6772-4176-ba9a-fdf5fbd0bfd9/collection/11918828-4c44ac2b-899a-4ed7-a19d-7e5fe702ff02?action=share&source=collection_link&creator=11918828"
 	},
 	"item": [
 		{
@@ -40,7 +40,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cpf\":\"49745742058\",\r\n    \"password\":\"12345678\"\r\n}",
+							"raw": "{\r\n    \"cpf\":\"51103282000\",\r\n    \"password\":\"12345678\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -90,7 +90,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cpf\":\"49745742058\",\r\n    \"password\":\"12345678\",\r\n    \"name\":\"Daniel Teófilo\",\r\n    \"role\":0\r\n}",
+							"raw": "{\r\n    \"cpf\":\"12076536671\",\r\n    \"password\":\"12345678\",\r\n    \"name\":\"Daniel Teófilo\",\r\n    \"role\":0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -111,10 +111,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "user",
-			"item": []
 		},
 		{
 			"name": "vehicle",
@@ -173,66 +169,6 @@
 							],
 							"path": [
 								"vehicles"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"if (pm.response.code === 200) {\r",
-									"\r",
-									"  const responseJson = pm.response.json();\r",
-									"  const token = responseJson.user.token; \r",
-									"\r",
-									"  pm.environment.set(\"TOKEN\", token);\r",
-									"\r",
-									"  console.log(\"Token salvo na variável de ambiente 'authToken'\");\r",
-									"} else {\r",
-									"  console.log(\"Falha ao obter token. Status:\", pm.response.code);\r",
-									"}\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"model\": \"307 PK 1.6\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST_URL}}/vehicles/5bf63f82-426c-4d88-ad27-65cd90fc3d7f",
-							"host": [
-								"{{HOST_URL}}"
-							],
-							"path": [
-								"vehicles",
-								"5bf63f82-426c-4d88-ad27-65cd90fc3d7f"
 							]
 						}
 					},
@@ -399,6 +335,474 @@
 							"path": [
 								"vehicles",
 								"82698c5e-df50-4c32-8538-732be0e516d7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "producer",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"\r",
+									"  const responseJson = pm.response.json();\r",
+									"  const token = responseJson.user.token; \r",
+									"\r",
+									"  pm.environment.set(\"TOKEN\", token);\r",
+									"\r",
+									"  console.log(\"Token salvo na variável de ambiente 'authToken'\");\r",
+									"} else {\r",
+									"  console.log(\"Falha ao obter token. Status:\", pm.response.code);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpfCnpj\": \"01047714027\",\r\n  \"nomeProdutor\": \"João Braga da Silva\",\r\n  \"nomeFazenda\": \"Fazenda de Minas\",\r\n  \"cidade\": \"Brumadinho\",\r\n  \"estado\": \"MG\",\r\n  \"areaTotalHectares\": 20000,\r\n  \"areaAgricultavelHectares\": 15000,\r\n  \"areaVegetacaoHectares\": 5000,\r\n    \"cultures\": [\r\n    {\r\n      \"idCulture\": \"2bbffea0-99ac-4dac-928d-1d739ebb1d4f\"\r\n    },\r\n    {\r\n      \"idCulture\": \"49233b3e-9f0f-4587-a3aa-611675a88f55\"\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/producers",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"producers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/producers/07836ef1-3480-4166-99ab-6a3fe6951ff4",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"producers",
+								"07836ef1-3480-4166-99ab-6a3fe6951ff4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/producers?skip=0&take=2&estado=MG",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"producers"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "2"
+								},
+								{
+									"key": "estado",
+									"value": "MG"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"\r",
+									"  const responseJson = pm.response.json();\r",
+									"  const token = responseJson.user.token; \r",
+									"\r",
+									"  pm.environment.set(\"TOKEN\", token);\r",
+									"\r",
+									"  console.log(\"Token salvo na variável de ambiente 'authToken'\");\r",
+									"} else {\r",
+									"  console.log(\"Falha ao obter token. Status:\", pm.response.code);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nomeFazenda\": \"Fazenda das Gerais Teste\",\r\n    \"cultures\": [\r\n        {\r\n            \"idCulture\": \"49233b3e-9f0f-4587-a3aa-611675a88f55\"\r\n        },\r\n        {\r\n            \"idCulture\": \"40b99900-9df3-4f02-a5eb-11e46d915973\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/producers/a9105dcf-065a-430a-8691-b14514275551",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"producers",
+								"a9105dcf-065a-430a-8691-b14514275551"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "culture",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"\r",
+									"  const responseJson = pm.response.json();\r",
+									"  const token = responseJson.user.token; \r",
+									"\r",
+									"  pm.environment.set(\"TOKEN\", token);\r",
+									"\r",
+									"  console.log(\"Token salvo na variável de ambiente 'authToken'\");\r",
+									"} else {\r",
+									"  console.log(\"Falha ao obter token. Status:\", pm.response.code);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\":\"Banana\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/cultures",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"cultures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/cultures/07fa83e9-0dec-473c-8a27-dfc6e4402504",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"cultures",
+								"07fa83e9-0dec-473c-8a27-dfc6e4402504"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/cultures?skip=0&take=6",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"cultures"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "6"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "metrics",
+			"item": [
+				{
+					"name": "list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_URL}}/metrics",
+							"host": [
+								"{{HOST_URL}}"
+							],
+							"path": [
+								"metrics"
 							]
 						}
 					},
