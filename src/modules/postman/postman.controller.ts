@@ -9,7 +9,7 @@ export class PostmanController {
   @ApiTags('postman')
   downloadPostmanCollection(@Res() res: Response) {
     const filePath = join(process.cwd(), 'public', 'postman-collection.json');
-    res.download(filePath, 'api-vehicles.postman_collection.json', (err) => {
+    res.download(filePath, 'postman_collection.json', (err) => {
       if (err) {
         console.error('Error during file download:', err);
         res.status(404).send({ message: 'File not found' });
