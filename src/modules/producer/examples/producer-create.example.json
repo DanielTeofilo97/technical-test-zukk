@@ -1,0 +1,50 @@
+{
+    "201":{
+        "id": "4c35afd1-6507-4cf5-afee-2f8c6774c75f",
+        "cpfCnpj": "84685988019",
+        "nomeProdutor": "João Doria da Silva",
+        "nomeFazenda": "Fazenda Diamante",
+        "cidade": "Brumadinho",
+        "estado": "MG",
+        "areaTotalHectares": 20000,
+        "areaAgricultavelHectares": 15000,
+        "areaVegetacaoHectares": 5000,
+        "idUserCreate": "52c31fd3-9178-4d6f-a2d6-fb3e6a627dff",
+        "createdAt": "2024-09-13T21:51:22.331Z",
+        "idUserUpdate": "52c31fd3-9178-4d6f-a2d6-fb3e6a627dff",
+        "updatedAt": "2024-09-13T21:51:22.331Z"
+    },
+    "400":{
+        "message": [
+            "Cidade é obrigatória",
+            "cidade must be a string",
+            "Estado deve ser a sigla de 2 letras",
+            "estado must be a string",
+            "A área total está incorreta.",
+            "Área total em hectares é obrigatória",
+            "Área total deve ser um número",
+            "Área agricultável em hectares é obrigatória",
+            "Área agricultável deve ser um número",
+            "Área de vegetação em hectares é obrigatória",
+            "Área de vegetação deve ser um número"
+        ],
+        "error": "Bad Request",
+        "statusCode": 400
+    },
+    "403":{
+        "message": "Forbidden resource",
+        "error": "Forbidden",
+        "statusCode": 403
+     },
+    "409":{
+        "response": {
+            "message": "Producer with CPF/CNPJ already exists",
+            "error": "Conflict",
+            "statusCode": 409
+        },
+        "status": 409,
+        "options": {},
+        "message": "Producer with CPF/CNPJ already exists",
+        "name": "ConflictException"
+    }
+}

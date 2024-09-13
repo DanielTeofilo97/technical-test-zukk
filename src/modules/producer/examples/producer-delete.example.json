@@ -1,0 +1,19 @@
+{
+    "200":{
+
+    },
+    "403":{
+        "message": "Forbidden resource",
+        "error": "Forbidden",
+        "statusCode": 403
+     },
+    "404":{
+        "name": "PrismaClientKnownRequestError",
+        "code": "P2025",
+        "clientVersion": "5.19.1",
+        "meta": {
+            "modelName": "Producer",
+            "cause": "Record to delete does not exist."
+        }
+    }
+}

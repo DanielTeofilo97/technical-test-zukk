@@ -1,0 +1,14 @@
+{
+    "200":{
+        "id": "d58c1f01-1e15-4681-ab6c-6d7dbc556cf7"
+    },
+    "400":{
+        "statusCode": 400,
+        "message": "Erro durante a criação da cultura"
+    },
+    "404":{
+        "message": "Cultures not found with IDs: 49233b3e-9f0f-4587-a3aa-611675a88f56",
+        "error": "Not Found",
+        "statusCode": 404
+    }
+}
