@@ -1,0 +1,42 @@
+{
+    "200":{
+        "totalFazendas": 5,
+        "totalHectares": 43003,
+        "usoSolo": {
+            "areaAgricultavel": 18206,
+            "areaVegetacao": 5800
+        },
+        "farmsByState": [
+            {
+                "state_name": "MG",
+                "state_count": 4
+            },
+            {
+                "state_name": "SP",
+                "state_count": 1
+            }
+        ],
+        "farmsByCulture": [
+            {
+                "culture_name": "Milho",
+                "farm_count": 4
+            },
+            {
+                "culture_name": "Soja",
+                "farm_count": 3
+            },
+            {
+                "culture_name": "Algodão",
+                "farm_count": 1
+            }
+        ]
+    },
+    "404":{
+        "statusCode": 404,
+        "message": "Nenhuma metric encontrado"
+    },
+    "400":{
+        "statusCode": 400,
+        "message": "Erro ao buscar metric"
+    }
+}
