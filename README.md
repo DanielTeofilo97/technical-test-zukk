@@ -6,15 +6,12 @@
  <a href="#-sobre-o-projeto">Sobre</a> •
  <a href="#-tecnologias">Tecnologias</a> •
  <a href="#-funcionalidades">Funcionalidades do Projeto</a> •
- <a href="#-emails">Emails</a> •
  <a href="#-pastas">Estrutura de Pastas</a> •
  <a href="#-script">Scripts</a> •
  <a href="#-db">Banco de Dados</a> •
  <a href="#-v-ambiente">Variáveis de Ambiente</a> •
- <a href="#-designer-system">Designer System</a> •
  <a href="#-tests">Testes</a> • •
  <a href="#-solid">Princípios SOLID</a> •
- <a href="#-auth">Porque o AuthJs</a> •
  <a href="#-contribuir">Contribuições</a> •
  <a href="#-autor">Autor</a> •
  <a href="#-licença">Licença</a>
@@ -24,7 +21,8 @@
 <a id="-sobre-o-projeto"></a>
 
 ## 💻 Sobre o projeto
-
+&nbsp;
+<img src="https://gerfzmyuurqmcfozugab.supabase.co/storage/v1/object/public/fotos/swagger%20(1).png?t=2024-09-13T18%3A03%3A28.341Z" alt="Tela de Login - Auth Portfolio Platform" align="center" />
 &nbsp;
 
 O **Rural Management Backend** é uma solução escalável e robusta, projetada para gerenciar dados de produtores rurais e suas fazendas. Focado na eficiência e segurança, o projeto utiliza Node.js com PostgreSQL para armazenar informações como produtores, áreas de fazendas, culturas plantadas e distribuições regionais.
@@ -275,3 +273,253 @@ O `User` gerencia as rotas para operações relacionadas aos usuários. Ele perm
 - **@ApiTags:** Classifica este controlador sob a tag `users` na documentação Swagger.
 
 ---
+&nbsp;
+
+<a id="-pastas"></a>
+
+## 📁 Estrutura de Pastas
+
+O projeto segue a arquitetura modular do NestJS, com a estrutura abaixo organizada para facilitar a manutenção e escalabilidade. Abaixo está uma visão geral das principais pastas e seus propósitos:
+
+- **decorators**: Contém decorators personalizados que são usados para adicionar metadados e funcionalidades aos elementos do código.
+
+- **enums**: Armazena enums que definem conjuntos de constantes nomeadas usadas em todo o projeto.
+
+- **guards**: Inclui guardas que implementam a lógica de autorização e autenticação para proteger as rotas e recursos da aplicação.
+
+- **interceptors**: Contém interceptadores que permitem modificar ou manipular a solicitação e a resposta em diferentes pontos da execução.
+
+- **middlewares**: Armazena middlewares que processam solicitações e respostas antes que elas cheguem aos controladores ou após saírem dos controladores.
+
+- **modules**: Organiza os módulos que encapsulam funcionalidades específicas da aplicação e sua configuração.
+
+- **prisma**: Contém a configuração e os arquivos relacionados ao Prisma ORM, incluindo esquemas e migrações para a camada de dados. O módulo de conexão com o banco de dados está incluído aqui.
+
+- **utils**: Contém funções utilitárias e helpers que facilitam tarefas comuns em diversas partes do projeto.
+
+Além dessas pastas dentro de `src`, o projeto também possui outros diretórios e arquivos na raiz, como configurações do ESLint, Prettier, Docker, e o `.env` para variáveis de ambiente.
+
+Essa organização modular segue as melhores práticas de desenvolvimento, facilitando a manutenção, a escalabilidade e a colaboração no projeto.
+
+&nbsp;
+<a id="-db"></a>
+
+## 🗄️ Banco de Dados
+
+Neste projeto, utilizamos **PostgreSQL** como nosso banco de dados principal devido à sua robustez, escalabilidade e suporte avançado a funcionalidades como transações, índices e operações complexas. A comunicação com o banco de dados é feita através do **Prisma ORM**, que facilita o gerenciamento de dados e a interação com o banco de dados.
+
+### Uso do Prisma
+
+O **Prisma** é utilizado para simplificar o acesso e manipulação dos dados no PostgreSQL. Ele fornece um ORM poderoso que nos permite definir modelos de dados de forma intuitiva e realizar operações complexas de forma eficiente. Além disso, Prisma suporta SQL puro para consultas específicas, oferecendo flexibilidade para otimizar consultas conforme necessário e aproveitar funcionalidades avançadas do PostgreSQL.
+
+### Estrutura de Repositórios e SOLID
+
+A estrutura de repositórios foi projetada seguindo os princípios SOLID, particularmente o Princípio da Inversão de Dependência (Dependency Inversion Principle). Dentro do diretório de repositórios (`repositories`), temos implementações específicas para o PostgreSQL usando o Prisma, que seguem as interfaces definidas para cada entidade. Essa abordagem permite que o sistema seja flexível e fácil de manter. Se decidirmos trocar o banco de dados no futuro, podemos fazer isso implementando novos repositórios sem alterar o restante da aplicação.
+
+### SQL Puro vs. ORM
+
+Optamos por utilizar o **Prisma ORM** para a maioria das operações de banco de dados, aproveitando suas funcionalidades para simplificar o desenvolvimento e manutenção. No entanto, também utilizamos **SQL puro** para consultas específicas que exigem maior controle e otimização. Essa combinação nos permite aproveitar o melhor dos dois mundos: a facilidade do ORM para operações comuns e a flexibilidade do SQL puro para consultas complexas e personalizadas.
+
+### Personalização das Entidades
+
+As entidades no projeto seguem o padrão utilizado pelo Prisma, mas foram personalizadas para atender às necessidades específicas da aplicação. Isso inclui a implementação de funcionalidades adicionais e ajustes que garantem uma integração perfeita com nosso sistema de autenticação personalizado.
+
+&nbsp;
+
+&nbsp;
+<a id="-v-ambiente"></a>
+
+## 🔐 Variáveis de Ambiente
+
+O projeto utiliza variáveis de ambiente para gerenciar configurações sensíveis e específicas de cada ambiente (desenvolvimento, staging, produção). Essas variáveis são armazenadas em arquivos `.env`, que permitem a configuração e o comportamento adequado da aplicação em diferentes contextos.
+
+### Arquivo `.env`
+
+No ambiente de desenvolvimento, utilizamos o arquivo `.env`, que contém variáveis que não apresentam riscos de segurança e são necessárias para que a aplicação funcione localmente. Esse arquivo é incluído no repositório para que todos os desenvolvedores possam facilmente configurar e executar a aplicação em suas máquinas. As variáveis configuram, por exemplo, a conexão com o banco de dados PostgreSQL local, o segredo de autenticação, o tempo de duração da sessão, entre outras. No ambiente de produção, essas variáveis são preenchidas com dados reais e sensíveis, que não são compartilhados no repositório.
+
+### Arquivo `.env.example`
+
+O arquivo `.env.example` serve como um guia para os desenvolvedores que precisam configurar suas próprias variáveis de ambiente locais. Ele lista todas as variáveis necessárias, mas sem os valores sensíveis, que devem ser preenchidos por cada desenvolvedor. 
+
+&nbsp;
+<a id="-tests"></a>
+
+## 🧪 Testes
+
+Os testes desempenham um papel crucial na qualidade e robustez deste projeto. Adotamos uma abordagem de **Test-Driven Development (TDD)** em várias APIs, onde os testes são escritos antes mesmo de começar a implementação, garantindo que as funcionalidades sejam desenvolvidas de acordo com as expectativas desde o início.
+
+<img src="https://gerfzmyuurqmcfozugab.supabase.co/storage/v1/object/public/fotos/testes.png" alt="Resultados de test do Rural Management Backend" align="center" />
+
+### Tipos de Testes
+
+- **Testes de Integração**: Em nossos testes de integração, testamos os casos de uso completos, desde a API até o final do caso de uso. Isso garante que todas as partes do sistema estejam funcionando de maneira coesa, integrando corretamente os diferentes componentes e verificando que a lógica de negócios está sendo executada conforme o esperado.
+
+- **Testes Unitários**: Nos testes unitários, focamos em validar partes isoladas do código, como utilidades e schemas de sanitização usando Jest.
+
+### Ferramentas e Integração Contínua
+
+- **Jest**: Atualmente, utilizamos o **Jest** como nossa principal ferramenta de testes, aproveitando sua ampla adoção e robustez para garantir a qualidade do código. O Jest permite criar e executar tanto testes unitários quanto de integração de maneira eficiente.
+  
+
+&nbsp;
+<a id="-ci"></a>
+
+## 🚀 CI/CD (Integração e Entrega Contínuas)
+
+Neste projeto, adotamos uma abordagem rigorosa e padronizada para **CI/CD** (Integração e Entrega Contínuas), garantindo que o código seja sempre de alta qualidade antes de ser mesclado e implantado em produção.
+
+### Validação e Qualidade do Código
+
+Utilizamos ferramentas para garantir a qualidade do código durante o processo de integração contínua:
+
+1. **ESLint**: Rodamos `npm run lint:eslint:check` para verificar a conformidade do código com as regras de lint definidas. O código precisa passar nessa verificação antes de ser integrado.
+
+2. **Prettier**: Usamos `npm run lint:prettier:check` para garantir que o código está formatado corretamente de acordo com as regras do Prettier. O código deve estar formatado corretamente antes de ser integrado.
+
+3. **Testes Automatizados**: Todos os testes são executados automaticamente para garantir que o código esteja funcionando conforme o esperado. Somente após a aprovação em todos os testes, o código é integrado.
+
+Exemplos de tipos de commits que utilizamos:
+
+- **feat**: Um novo recurso adicionado ao projeto
+- **fix**: Correção de um bug no projeto
+- **build**: Alterações no sistema de build ou em dependências externas (ex: gulp, npm)
+- **chore**: Tarefas que não alteram o código de produção (ex: atualizações de dependências)
+- **ci**: Alterações em arquivos de configuração e scripts de CI (ex: Travis, CircleCI)
+- **docs**: Alterações que afetam apenas a documentação
+- **style**: Alterações de estilo que não afetam o significado do código (ex: formatação)
+- **refactor**: Mudanças no código que não adicionam recursos ou corrigem bugs
+- **perf**: Alterações no código que melhoram o desempenho
+- **test**: Adição ou correção de testes
+  
+### Estratégia de Branching
+
+Optamos por uma estratégia de branching simples, onde cada nova funcionalidade é desenvolvida em uma branch específica para aquela feature. Essa estratégia é conhecida como **Feature Branching**, que não deve ser confundida com o Git Flow. Embora o Git Flow seja uma excelente estratégia, optamos pela simplicidade do Feature Branching.
+
+Além das feature branches, mantemos uma branch fixa para ajustes rápidos, garantindo que correções urgentes possam ser aplicadas rapidamente.
+
+### Deploy com Railway
+
+O deploy do projeto é realizado automaticamente na **Railway**, uma plataforma que facilita o processo de entrega contínua. A Railway é otimizada para gerenciamento de infraestrutura e implantação, garantindo que as mudanças aprovadas na branch principal sejam implantadas rapidamente e de forma eficiente.
+
+### Conclusão
+
+Com essa estrutura de CI/CD bem definida, conseguimos manter um alto padrão de qualidade no código e nos processos de desenvolvimento, minimizando a possibilidade de erros e garantindo a estabilidade e a escalabilidade do projeto.
+
+
+&nbsp;
+<a id="-solid"></a>
+
+## 🧩 Princípios SOLID no Projeto
+
+Os princípios SOLID são fundamentais para criar sistemas escaláveis, fáceis de manter e com baixo acoplamento. A seguir, detalharemos como cada um desses princípios foi aplicado na arquitetura do projeto utilizando NestJS.
+
+### 1. **Princípio da Responsabilidade Única (SRP - Single Responsibility Principle)**
+
+**Aplicação no Projeto:**
+
+- **Controllers**: Em NestJS, os controllers são responsáveis apenas por receber as requisições e delegar a lógica de negócios para os serviços. Eles não lidam com a lógica de negócios ou acesso direto ao banco de dados.
+
+  Exemplo: `UserController` lida com endpoints de usuários e delega a lógica de manipulação de dados ao `UserService`.
+
+- **Services**: Serviços são responsáveis pela lógica de negócios e interações com o banco de dados. Eles encapsulam a lógica de domínio e são chamados pelos controllers.
+
+  Exemplo: `UserService` implementa a lógica para criação, atualização e exclusão de usuários.
+
+- **Repositories**: Utilizamos o Prisma ou o TypeORM para abstrair o acesso ao banco de dados. Esses módulos fornecem um repositório abstrato para realizar operações CRUD e abstrair a lógica de acesso ao banco de dados.
+
+  Exemplo: `UserRepository` gerencia operações de CRUD para a entidade `User`.
+
+**Benefício**: Cada componente tem uma responsabilidade claramente definida, o que facilita a manutenção e a evolução do código sem introduzir efeitos colaterais indesejados.
+
+### 2. **Princípio do Aberto/Fechado (OCP - Open/Closed Principle)**
+
+**Aplicação no Projeto:**
+
+- **Services e Repositories**: Os serviços e repositórios são projetados para serem extensíveis sem modificar o código existente. Novas funcionalidades podem ser adicionadas criando novas classes ou implementações.
+
+  Exemplo: Adicionar uma nova funcionalidade ao `UserService` não requer alterações na lógica existente, mas a adição de novos métodos ou serviços.
+
+- **Modules**: Os módulos do NestJS são configuráveis e podem ser estendidos com novos providers ou controllers sem alterar o código existente.
+
+  Exemplo: Adicionar um novo módulo para uma nova funcionalidade não afeta os módulos existentes.
+
+**Benefício**: O sistema é extensível sem necessidade de modificar o código existente, reduzindo a probabilidade de introduzir bugs e facilitando a adição de novas funcionalidades.
+
+### 3. **Princípio da Substituição de Liskov (LSP - Liskov Substitution Principle)**
+
+**Aplicação no Projeto:**
+
+- **Interfaces de Repositories**: As interfaces definidas para os repositórios garantem que qualquer implementação concreta possa ser substituída por outra implementação sem quebrar o código que depende dela.
+
+  Exemplo: `UserRepository` pode ser substituído por uma implementação que use MongoDB sem impactar o `UserService`.
+
+**Benefício**: Facilita a troca e a substituição de componentes do sistema sem alterações significativas no código que os utiliza, mantendo a compatibilidade e a previsibilidade do comportamento do sistema.
+
+### 4. **Princípio da Segregação de Interfaces (ISP - Interface Segregation Principle)**
+
+**Aplicação no Projeto:**
+
+- **Interfaces Específicas**: Cada repositório e serviço implementa interfaces específicas para as operações necessárias, evitando a implementação de métodos que não são utilizados.
+
+  Exemplo: `UserRepository` define apenas métodos relacionados a usuários, sem incluir métodos para outras entidades.
+
+**Benefício**: As classes e interfaces são mantidas pequenas e focadas, o que torna o código mais limpo e fácil de entender.
+
+### 5. **Princípio da Inversão de Dependência (DIP - Dependency Inversion Principle)**
+
+**Aplicação no Projeto:**
+
+- **Dependency Injection**: O NestJS usa injeção de dependência para fornecer implementações para as interfaces, permitindo que o código de alto nível dependa de abstrações e não de implementações concretas.
+
+  Exemplo: `UserService` depende de uma abstração `UserRepository`, que é injetada via construtor.
+
+- **Factories e Modules**: As factories e módulos gerenciam a criação e injeção de dependências, permitindo que o sistema seja modular e desacoplado.
+
+  Exemplo: `UserModule` configura e fornece a implementação do `UserRepository` e do `UserService`.
+
+**Benefício**: Facilita o teste unitário e a substituição de componentes por mocks ou outras implementações, promovendo a criação de código mais modular e desacoplado.
+
+---
+
+&nbsp;
+<a id="--contribuir"></a>
+
+## 👐 Contribuições
+
+Este projeto é open source sob a licença MIT, e contribuições são muito bem-vindas!
+
+Se você encontrar algum problema ou tiver uma ideia de melhoria, sinta-se à vontade para abrir uma [issue](https://github.com/seu_usuario/seu_repositorio/issues). Pull requests também são muito bem-vindos!
+
+Por favor, siga as diretrizes descritas no [CONTRIBUTING.md](./CONTRIBUTING.md) para garantir que o processo de contribuição seja o mais suave possível.
+
+### Código de Conduta
+
+Este projeto segue um [Código de Conduta](./CODE_OF_CONDUCT.md). Ao participar, você está concordando em seguir essas diretrizes.
+
+&nbsp;
+<a id="-autor"></a>
+
+## 🦸 Autor
+
+Olá, eu sou Daniel Teófilo, Analista de Sistenas. Sou aficcionado por tecnologia, programação e processos.  Dúvidas, sugestões e críticas são super bem vindas. Seguem meus contatos.
+
+- feitordaniel@live.com
+
+&nbsp;
+
+<p align="center">
+  <a href= "https://br.linkedin.com/in/daniel-te%C3%B3filo-108a0222b"><img alt="perfil Daniel Teófilo da Silva" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=0A66C2&logo=LinkedIn&label=LinkedIn&message=Daniel Teófilo&color=0A66C2"></a>
+  <a href= "https://www.instagram.com/daniel.teofilos/"><img alt="perfil Instagram Daniel Teófilo" src="https://img.shields.io/static/v1?logoWidth=15&logoColor=E4405F&logo=Instagram&label=Instagram&message=@daniel.teofilos&color=E4405F"></a>
+</p>
+
+
+---
+
+&nbsp;
+<a id="-licença"></a>
+
+## 📝 Licença
+
+Este projeto é [MIT licensed](./LICENSE).
+
+##### _#CompartilheConhecimento_

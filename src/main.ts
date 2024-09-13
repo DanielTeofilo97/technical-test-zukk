@@ -12,7 +12,7 @@ const logger = new Logger('Main');
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = new DocumentBuilder()
-    .setTitle('API Producers')
+    .setTitle('API - Rural Management Backend')
     .setDescription('API REST desenvolvido com NestJs e PostgreSQL')
     .setVersion('1.0')
     .addServer('http://localhost:3049', 'Local Development')
